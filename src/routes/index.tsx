@@ -675,23 +675,16 @@ function Index() {
                 Facebook, Instagram, Google, WhatsApp & Telegram ads — done right.
               </p>
               <div className="mt-5 flex gap-3">
-                {[
-                  { icon: Send, href: "https://t.me/TrustMeMedia", label: "Telegram" },
-                  { icon: Instagram, href: "https://www.instagram.com/growthxnova", label: "Instagram" },
-                  { icon: Facebook, href: "#", label: "Facebook" },
-                  { icon: MessageCircle, href: "https://wa.me/", label: "WhatsApp" },
-                ].map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-electric/40 hover:shadow-glow hover:-translate-y-0.5 transition"
-                  >
-                    <Icon className="h-4 w-4 text-electric" />
-                  </a>
-                ))}
+  <a
+    href="https://t.me/TrustMeMedia"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Telegram"
+    className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-electric/40 hover:shadow-glow transition"
+  >
+    <Send className="h-4 w-4 text-electric" />
+  </a>
+</div>
               </div>
             </div>
 
