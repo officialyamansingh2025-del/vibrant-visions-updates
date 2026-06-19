@@ -139,6 +139,11 @@
     backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 168, 255, 0.2);
   }
+  .nav-scrolled {
+    background: rgba(11, 15, 26, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
 }
 
 @keyframes float-pulse {
