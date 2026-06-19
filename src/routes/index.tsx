@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Facebook,
   Instagram,
@@ -160,9 +160,17 @@ const faqs = [
 
 const navItems = ["home", "about", "services", "results", "packages", "faq", "contact"];
 
+function smoothScrollTo(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + window.scrollY - 72;
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
 function Index() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set([0]));
   const toggleFaq = (i: number) =>
     setOpenFaqs((prev) => {
@@ -174,6 +182,13 @@ function Index() {
 
   useScrollReveal();
   useActiveSection(navItems);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const openLightbox = (i: number) => setLightboxIndex(i);
   const closeLightbox = () => setLightboxIndex(null);
@@ -199,9 +214,9 @@ function Index() {
       </a>
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-40 glass">
+      <nav className={`fixed top-0 left-0 right-0 z-40 glass transition-all duration-300 ${scrolled ? "nav-scrolled" : ""}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <a href="#home" className="flex min-w-0 items-center gap-3">
+          <a href="#home" onClick={(e) => { e.preventDefault(); smoothScrollTo("home"); }} className="flex min-w-0 items-center gap-3">
             <img
               src={logo.url}
               alt="Trust Me Media"
@@ -225,6 +240,7 @@ function Index() {
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={(e) => { e.preventDefault(); smoothScrollTo(id); }}
                 data-nav-link={id}
                 className="capitalize hover:text-electric transition"
               >
@@ -233,6 +249,7 @@ function Index() {
             ))}
             <a
               href="#contact"
+              onClick={(e) => { e.preventDefault(); smoothScrollTo("contact"); }}
               data-nav-link="contact"
               className="rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow hover:scale-105 transition"
             >
@@ -247,7 +264,7 @@ function Index() {
               <a
                 key={s}
                 href={`#${s}`}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { e.preventDefault(); setMenuOpen(false); smoothScrollTo(s); }}
                 className="py-2 capitalize hover:text-electric"
               >
                 {s}
