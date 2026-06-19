@@ -177,6 +177,17 @@
 [data-reveal-delay="5"] { transition-delay: 0.40s; }
 [data-reveal-delay="6"] { transition-delay: 0.48s; }
 
+/* Side-scale reveal for gallery */
+[data-reveal][data-reveal-side="left"] {
+  transform: translateX(-60px) scale(0.85);
+}
+[data-reveal][data-reveal-side="right"] {
+  transform: translateX(60px) scale(0.85);
+}
+[data-reveal][data-reveal-side].is-revealed {
+  transform: translateX(0) scale(1);
+}
+
 /* Active nav */
 .nav-active {
   color: var(--electric-blue) !important;
