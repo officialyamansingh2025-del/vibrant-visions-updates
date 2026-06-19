@@ -490,18 +490,27 @@ function Index() {
                 data-reveal-side={i % 2 === 0 ? "left" : "right"}
                 data-reveal-delay={String((i % 3) + 1)}
                 onClick={() => openLightbox(i)}
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl glass shadow-card focus:outline-none focus:ring-2 focus:ring-electric hover:shadow-glow hover:border-electric/40 transition"
+                className="group relative overflow-hidden rounded-xl glass shadow-card focus:outline-none focus:ring-2 focus:ring-electric hover:shadow-glow hover:border-electric/40 hover:-translate-y-1 transition text-left"
                 aria-label={`Open ${img.alt}`}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 text-left text-xs sm:text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition">
-                  <Eye className="h-4 w-4" /> Click to view full size
+                {/* Browser chrome */}
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-black/60 border-b border-white/10">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
+                  <span className="ml-2 flex-1 h-4 rounded bg-white/5" />
+                </div>
+                <div className="relative aspect-[16/10] overflow-hidden bg-black">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 text-xs sm:text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition">
+                    <Eye className="h-4 w-4" /> Click to view full size
+                  </div>
                 </div>
               </button>
             ))}
