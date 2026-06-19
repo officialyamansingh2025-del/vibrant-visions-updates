@@ -576,8 +576,6 @@ function Index() {
               return (
                 <div
                   key={f.q}
-                  data-reveal
-                  data-reveal-delay={String((i % 5) + 1)}
                   className={[
                     "glass rounded-2xl overflow-hidden transition",
                     open ? "border-electric/40 shadow-glow" : "hover:border-electric/30",
