@@ -264,7 +264,7 @@ function Index() {
               <a
                 key={s}
                 href={`#${s}`}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { e.preventDefault(); setMenuOpen(false); smoothScrollTo(s); }}
                 className="py-2 capitalize hover:text-electric"
               >
                 {s}
