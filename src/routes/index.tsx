@@ -160,9 +160,17 @@ const faqs = [
 
 const navItems = ["home", "about", "services", "results", "packages", "faq", "contact"];
 
+function smoothScrollTo(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + window.scrollY - 72;
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
 function Index() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set([0]));
   const toggleFaq = (i: number) =>
     setOpenFaqs((prev) => {
@@ -174,6 +182,13 @@ function Index() {
 
   useScrollReveal();
   useActiveSection(navItems);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const openLightbox = (i: number) => setLightboxIndex(i);
   const closeLightbox = () => setLightboxIndex(null);
