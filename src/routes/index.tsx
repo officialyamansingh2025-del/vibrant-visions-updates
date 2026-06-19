@@ -240,6 +240,7 @@ function Index() {
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={(e) => { e.preventDefault(); smoothScrollTo(id); }}
                 data-nav-link={id}
                 className="capitalize hover:text-electric transition"
               >
@@ -248,6 +249,7 @@ function Index() {
             ))}
             <a
               href="#contact"
+              onClick={(e) => { e.preventDefault(); smoothScrollTo("contact"); }}
               data-nav-link="contact"
               className="rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow hover:scale-105 transition"
             >
