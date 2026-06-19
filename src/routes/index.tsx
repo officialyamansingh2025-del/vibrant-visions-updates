@@ -163,7 +163,14 @@ const navItems = ["home", "about", "services", "results", "packages", "faq", "co
 function Index() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set([0]));
+  const toggleFaq = (i: number) =>
+    setOpenFaqs((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
 
   useScrollReveal();
   useActiveSection(navItems);
@@ -480,9 +487,10 @@ function Index() {
               <button
                 key={img.src}
                 data-reveal
+                data-reveal-side={i % 2 === 0 ? "left" : "right"}
                 data-reveal-delay={String((i % 3) + 1)}
                 onClick={() => openLightbox(i)}
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl glass shadow-card focus:outline-none focus:ring-2 focus:ring-electric"
+                className="group relative aspect-[4/3] overflow-hidden rounded-2xl glass shadow-card focus:outline-none focus:ring-2 focus:ring-electric hover:shadow-glow hover:border-electric/40 transition"
                 aria-label={`Open ${img.alt}`}
               >
                 <img
@@ -555,7 +563,7 @@ function Index() {
 
           <div className="mt-12 space-y-3">
             {faqs.map((f, i) => {
-              const open = openFaq === i;
+              const open = openFaqs.has(i);
               return (
                 <div
                   key={f.q}
@@ -567,7 +575,7 @@ function Index() {
                   ].join(" ")}
                 >
                   <button
-                    onClick={() => setOpenFaq(open ? null : i)}
+                    onClick={() => toggleFaq(i)}
                     className="w-full flex items-center justify-between gap-4 p-5 text-left"
                     aria-expanded={open}
                   >
@@ -675,16 +683,15 @@ function Index() {
                 Facebook, Instagram, Google, WhatsApp & Telegram ads — done right.
               </p>
               <div className="mt-5 flex gap-3">
-  <a
-    href="https://t.me/TrustMeMedia"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Telegram"
-    className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-electric/40 hover:shadow-glow transition"
-  >
-    <Send className="h-4 w-4 text-electric" />
-  </a>
-</div>
+                <a
+                  href="https://t.me/TrustMeMedia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Telegram"
+                  className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-electric/40 hover:shadow-glow transition"
+                >
+                  <Send className="h-4 w-4 text-electric" />
+                </a>
               </div>
             </div>
 
