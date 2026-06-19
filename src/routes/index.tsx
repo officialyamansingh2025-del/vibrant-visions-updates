@@ -722,9 +722,6 @@ function Index() {
                   <Send className="h-4 w-4 mt-0.5 text-electric shrink-0" /> @TrustMeMedia
                 </li>
                 <li className="flex items-start gap-2">
-                  <Mail className="h-4 w-4 mt-0.5 text-electric shrink-0" /> growthpainads@gmail.com
-                </li>
-                <li className="flex items-start gap-2">
                   <MapPin className="h-4 w-4 mt-0.5 text-electric shrink-0" /> India • Worldwide remote
                 </li>
               </ul>
