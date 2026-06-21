@@ -36,16 +36,28 @@ import {
 import { Lightbox } from "@/components/Lightbox";
 import { ParticlesBg } from "@/components/ParticlesBg";
 import { useScrollReveal, useActiveSection } from "@/hooks/useScrollReveal";
-import logo from "@/assets/trustme-logo.jpeg.asset.json";
-import r1 from "@/assets/result-1.png.asset.json";
-import r2 from "@/assets/result-2.png.asset.json";
-import r3 from "@/assets/result-3.png.asset.json";
-import r4 from "@/assets/result-4.png.asset.json";
-import r5 from "@/assets/result-5.png.asset.json";
-import r6 from "@/assets/result-6.png.asset.json";
-import r7 from "@/assets/result-7.png.asset.json";
-import r8 from "@/assets/result-8.png.asset.json";
-import r9 from "@/assets/result-9.png.asset.json";
+import logoUrl from "@/assets/trustme-logo.jpeg";
+import r1Url from "@/assets/result-1.png";
+import r2Url from "@/assets/result-2.png";
+import r3Url from "@/assets/result-3.png";
+import r4Url from "@/assets/result-4.png";
+import r5Url from "@/assets/result-5.png";
+import r6Url from "@/assets/result-6.png";
+import r7Url from "@/assets/result-7.png";
+import r8Url from "@/assets/result-8.png";
+import r9Url from "@/assets/result-9.png";
+
+// Wrap as { url } so existing `.url` references keep working on any host (Vercel/Netlify/Lovable).
+const logo = { url: logoUrl };
+const r1 = { url: r1Url };
+const r2 = { url: r2Url };
+const r3 = { url: r3Url };
+const r4 = { url: r4Url };
+const r5 = { url: r5Url };
+const r6 = { url: r6Url };
+const r7 = { url: r7Url };
+const r8 = { url: r8Url };
+const r9 = { url: r9Url };
 
 export const Route = createFileRoute("/")({
   head: () => ({
